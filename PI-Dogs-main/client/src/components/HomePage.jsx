@@ -8,6 +8,7 @@ import Pagination from "./Pagination";
 import CreateDogForm from "./CreateDogForm";
 import styles from "../Styles/HomePage.module.css";
 import { getDogs, getTemperaments } from "../redux/actions/actions";
+import Detail from "./Detail";
 
 const HomePage = () => {
   const temperaments = useSelector((state) => state.temperaments);
@@ -73,7 +74,7 @@ const HomePage = () => {
         </Link>
         <SearchBar onSearch={handleSearch} />
         <FilterOptions
-          temperaments={temperaments}
+          
           onFilter={handleFilter}
           onSort={handleSort}
         />
@@ -92,10 +93,24 @@ const HomePage = () => {
             key={dog.id}
             id={dog.id}
             name={dog.name}
-            image_url={dog.image_url}
+            image={dog.image}
             weight={dog.weight}
             temperament={dog.temperament}
-            life_span={dog.life_span}
+            lifeOfYear={dog.lifeOfYear}
+            height={dog.height}
+            />
+            ))}
+          </div>
+          <div>
+        {currentDogs?.map((dog) => (
+          <Detail 
+            key={dog.id}
+            id={dog.id}
+            name={dog.name}
+            image={dog.image}
+            weight={dog.weight}
+            temperament={dog.temperament}
+            lifeOfYear={dog.lifeOfYear}
             height={dog.height}
             />
             ))}

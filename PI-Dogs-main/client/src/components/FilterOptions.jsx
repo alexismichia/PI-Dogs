@@ -1,9 +1,20 @@
 import React from "react";
 import styles from "../Styles/FilterOptions.module.css"
-
-const FilterOptions = ({ temperaments, onFilter, onSort }) => {
-  const handleTemperamentChange = (e) => {
-    onFilter(e.target.value);
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getTemperaments } from "../redux/actions/actions";
+import { filterByTemp } from "../redux/actions/actions";
+const FilterOptions = ({ onFilter, onSort }) => {
+  const temperaments = useSelector((state) => state.temperaments);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
+  
+  
+  const handleFilterByTemp = (temperaments) => {
+    dispatch(filterByTemp(temperaments));
   };
 
   const handleOriginChange = (e) => {
@@ -13,18 +24,18 @@ const FilterOptions = ({ temperaments, onFilter, onSort }) => {
   const handleSortChange = (e) => {
     onSort(e.target.value);
   };
-
+console.log(temperaments)
   return (
     <div className={styles.filterContainer}>
       <div className={styles.filter}>
         <label htmlFor="temperament">Filtrar por Temperamento:</label>
-        <select id="temperament" onChange={handleTemperamentChange}>
+        <select id="temperament" onChange={handleFilterByTemp}>
           <option value="">Todos los Temperamentos</option>
-          {temperaments.map((temperament) => (
-            <option key={temperament.id} value={temperament.value}>
+          {temperaments.map((temperament) => {
+            return(<option key={temperament.id} value={temperament.name}>
               {temperament.name}
             </option>
-          ))}
+          )})}
         </select>
       </div>
       <div className={styles.filter}>

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { getTemperaments } from "../redux/actions/actions";
 import styles from  "../Styles/CreateDogForm.module.css"
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
 const CreateDogForm = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -8,8 +12,21 @@ const CreateDogForm = () => {
   const [maxHeight, setMaxHeight] = useState("");
   const [minWeight, setMinWeight] = useState("");
   const [maxWeight, setMaxWeight] = useState("");
-  const [temperaments, setTemperaments] = useState([]);
+  const [selectedTemperaments, setSelectedTemperaments] = useState([]);
+  const temperaments = useSelector((state) => state.temperaments);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
+
+  const handleTemperamentChange = (e) => {
+    const selectedOptions = Array.from(e.target.options)
+      .filter((option) => option.selected)
+      .map((option) => option.value);
+
+    setSelectedTemperaments(selectedOptions);
+  };
   const handleSubmit = async (e, temperaments) => {
     e.preventDefault();
     const newDog = {
@@ -23,7 +40,7 @@ const CreateDogForm = () => {
         min: minWeight,
         max: maxWeight,
       },
-      temperaments,
+      temperaments: selectedTemperaments,
     };
 
     try {
@@ -106,16 +123,16 @@ const CreateDogForm = () => {
       <div className={styles["input-container"]}>
         <label className={styles.label} htmlFor="temperaments">Temperaments:</label>
         <select
-          id="temperaments"
-          multiple
-          value={temperaments}
-          onChange={(e) =>
-            setTemperaments(
-              Array.from(e.target.selectedOptions, (option) => option.value)
-            )
-          }
+          id="temperament"
+          multiple // Permite seleccionar varios temperamentos
+          value={selectedTemperaments}
+          onChange={handleTemperamentChange}
         >
-          {/* Render options for each temperament */}
+          {temperaments.map((temperament) => (
+            <option key={temperament.id} value={temperament.name}>
+              {temperament.name}
+            </option>
+          ))}
         </select>
       </div>
       <button type="submit">Create Dog</button>

@@ -4,8 +4,8 @@ import {
   GET_DOGS,
   GET_TEMPERAMENTS,
   GET_DOG_ID,
-  POST_DOGS
-
+  POST_DOGS,
+  FILTER_TEMPERAMENTS
 } from "./types";
 
 // Action creator para obtener la lista de perros
@@ -38,9 +38,9 @@ export const getTemperaments = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get('http://localhost:3001/temperaments');
-      const temperaments = response.data.map((t) => t.name);
-      console.log("Temperaments:", temperaments);
-      dispatch({ type: GET_TEMPERAMENTS, payload: temperaments });
+      
+      console.log("Temperaments:", response.data);
+      dispatch({ type: GET_TEMPERAMENTS, payload: response.data });
     } catch (error) {
       console.log(error);
     }
@@ -50,13 +50,17 @@ export const getTemperaments = () => {
 export const createNewDog = (newDog) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("https://api.thedogapi.com/v1/breeds", newDog);
+      const response = await axios.post("http://localhost:3001/dogs/", newDog);
       console.log("New dog created:", response.data);
       dispatch({ type: POST_DOGS, payload: response.data });
     } catch (error) {
       console.log(error);
     }
   }
+};
+
+export const filterByTemp=(temperaments)=>{
+return {type: FILTER_TEMPERAMENTS, payload:temperaments}
 };
     
 
