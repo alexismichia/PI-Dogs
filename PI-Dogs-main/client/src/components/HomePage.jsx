@@ -54,6 +54,10 @@ const HomePage = () => {
   const handleSort = (sort) => {
     setSort(sort);
   };
+  
+
+
+
 
   return (
     <div>
@@ -78,25 +82,27 @@ const HomePage = () => {
       {formSubmitted && (
         <div className={styles.successMessage}>Formulario enviado correctamente.</div>
       )}
+       {dogs?.map((dog) => (
+      <DogList
+          key={dog.id}
+          id={dog.id}
+          name={dog.name}
+          image_url={dog.image_url}
+          weight={dog.weight}
+          temperament={dog.temperament}
+          life_span={dog.life_span}
+          
+          height={dog.height}
+          />
+          ))}
       
     
 
-  {dogs?.map((dog) => (
-  <DogList
-    key={dog.id}
-    id={dog.id}
-    name={dog.name}
-    image_url={dog.image_url}
-    weight={dog.weight}
-    temperament={dog.temperament}
-    life_span={dog.life_span}
-    breed_group={dog.breed_group}
-  />
-  ))}
+ 
 
 
       <Pagination />
-      <p>Aca deberia haber perros....</p>
+      <p>7 DIAS HAN PASADO Y NI UN PERRO POR AQUI...</p>
     </div>
   );
 };

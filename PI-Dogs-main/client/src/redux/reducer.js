@@ -20,7 +20,7 @@ const dogReducer = (state = initialState, action) => {
     case GET_DOGS:
             return {
                  ...state,
-                 arrayDogs: action.payload
+                 dogs: action.payload
              }
     case GET_TEMPERAMENTS:
             return {
