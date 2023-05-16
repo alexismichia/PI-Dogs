@@ -6,7 +6,7 @@ import DogList from "./DogList";
 import FilterOptions from "./FilterOptions";
 import Pagination from "./Pagination";
 import CreateDogForm from "./CreateDogForm";
-import styles from  "../Styles/HomePage.module.css";
+import styles from "../Styles/HomePage.module.css";
 import { getDogs, getTemperaments } from "../redux/actions/actions";
 
 const HomePage = () => {
@@ -19,6 +19,11 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("");
+  const dogsPerPage = 8;
+  const [currentPage, setCurrentPage] = useState(1);
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = dogs?.slice(indexOfFirstDog, indexOfLastDog);
 
   useEffect(() => {
     dispatch(getTemperaments());
@@ -28,7 +33,7 @@ const HomePage = () => {
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
-  
+
   const handleCloseForm = () => {
     setShowForm(false);
   };
@@ -54,18 +59,18 @@ const HomePage = () => {
   const handleSort = (sort) => {
     setSort(sort);
   };
-  
 
-
-
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
       <h1 className={styles.title}>Razas de Perros</h1>
       <div className={styles.buttonContainer}>
-      <Link to="/form">
-        <button className={styles.button}>Agregar nueva raza</button>
-      </Link>
+        <Link to="/form">
+          <button className={styles.button}>Agregar nueva raza</button>
+        </Link>
         <SearchBar onSearch={handleSearch} />
         <FilterOptions
           temperaments={temperaments}
@@ -74,40 +79,40 @@ const HomePage = () => {
         />
       </div>
       {showForm && (
-        <CreateDogForm
-          onClose={handleCloseForm}
-          onSubmit={handleSubmitForm}
-        />
+        <CreateDogForm onClose={handleCloseForm} onSubmit={handleSubmitForm} />
       )}
       {formSubmitted && (
-        <div className={styles.successMessage}>Formulario enviado correctamente.</div>
+        <div className={styles.successMessage}>
+          Formulario enviado correctamente.
+        </div>
       )}
-       {dogs?.map((dog) => (
-      <DogList
-          key={dog.id}
-          id={dog.id}
-          name={dog.name}
-          image_url={dog.image_url}
-          weight={dog.weight}
-          temperament={dog.temperament}
-          life_span={dog.life_span}
-          
-          height={dog.height}
-          />
-          ))}
-      
-    
-
- 
-
-
-      <Pagination />
-      <p>7 DIAS HAN PASADO Y NI UN PERRO POR AQUI...</p>
-    </div>
-  );
-};
+      <div className={styles.dogListContainer}>
+        {currentDogs?.map((dog) => (
+          <DogList className={styles.dogListContainer}
+            key={dog.id}
+            id={dog.id}
+            name={dog.name}
+            image_url={dog.image_url}
+            weight={dog.weight}
+            temperament={dog.temperament}
+            life_span={dog.life_span}
+            height={dog.height}
+            />
+            ))}
+          </div>
+          <Pagination
+            itemsPerPage={dogsPerPage}
+            totalItems={dogs?.length}
+            initialPage={1}
+            onPageChange={handlePageChange}
+            />
+          <p>7 DIAS HAN PASADO Y NI UN PERRO POR AQUI...</p>
+          </div>
+        );
+        };
 
 export default HomePage;
+
 
 
 

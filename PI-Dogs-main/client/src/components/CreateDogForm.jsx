@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getTemperaments } from "../redux/actions/actions";
 import styles from  "../Styles/CreateDogForm.module.css"
 const CreateDogForm = () => {
   const [name, setName] = useState("");
@@ -9,7 +10,7 @@ const CreateDogForm = () => {
   const [maxWeight, setMaxWeight] = useState("");
   const [temperaments, setTemperaments] = useState([]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e, temperaments) => {
     e.preventDefault();
     const newDog = {
       name,
@@ -121,6 +122,7 @@ const CreateDogForm = () => {
     </form>
   );
 };
+
 
 export default CreateDogForm;
 

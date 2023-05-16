@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Styles/FilterOptions.module.css";
+import styles from "../Styles/FilterOptions.module.css"
 
 const FilterOptions = ({ temperaments, onFilter, onSort }) => {
   const handleTemperamentChange = (e) => {
@@ -21,7 +21,7 @@ const FilterOptions = ({ temperaments, onFilter, onSort }) => {
         <select id="temperament" onChange={handleTemperamentChange}>
           <option value="">Todos los Temperamentos</option>
           {temperaments.map((temperament) => (
-            <option key={temperament.id} value={temperament.name}>
+            <option key={temperament.id} value={temperament.value}>
               {temperament.name}
             </option>
           ))}
@@ -50,6 +50,11 @@ const FilterOptions = ({ temperaments, onFilter, onSort }) => {
 };
 
 export default FilterOptions;
+
+
+
+
+
 
 
 // Código terminado!

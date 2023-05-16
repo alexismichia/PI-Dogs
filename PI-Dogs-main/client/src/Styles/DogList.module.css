@@ -1,0 +1,41 @@
+/* DogList.module.css */
+
+.dogCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .dogCard {
+    width: 250px;
+    border: 1px solid #2196F3;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #2196F3;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .dogCard:hover {
+    transform: scale(1.1);
+  }
+  
+  .dogCard h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .dogCard p {
+    margin: 5px 0;
+  }
+  
+  .dogCard img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  
