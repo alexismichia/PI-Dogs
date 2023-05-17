@@ -13,8 +13,8 @@ const FilterOptions = ({ onFilter, onSort }) => {
   }, [dispatch]);
   
   
-  const handleFilterByTemp = (temperaments) => {
-    dispatch(filterByTemp(temperaments));
+  const handleFilterByTemp = (e) => {
+    dispatch(filterByTemp(e.target.value));
   };
 
   const handleOriginChange = (e) => {
@@ -24,13 +24,13 @@ const FilterOptions = ({ onFilter, onSort }) => {
   const handleSortChange = (e) => {
     onSort(e.target.value);
   };
-console.log(temperaments)
+
   return (
     <div className={styles.filterContainer}>
       <div className={styles.filter}>
         <label htmlFor="temperament">Filtrar por Temperamento:</label>
         <select id="temperament" onChange={handleFilterByTemp}>
-          <option value="">Todos los Temperamentos</option>
+          <option value="All">Todos los Temperamentos</option>
           {temperaments.map((temperament) => {
             return(<option key={temperament.id} value={temperament.name}>
               {temperament.name}

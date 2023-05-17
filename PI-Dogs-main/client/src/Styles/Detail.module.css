@@ -1,0 +1,40 @@
+.detailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+  
+  .dogCard {
+    background-color: #2196;
+    border-radius: 50px;
+    box-shadow: 0 5px 4px rgba(161, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    
+  }
+  
+  .dogCard h2 {
+    color: #000000;
+    font-size: 24px;
+    margin-bottom: 10px;
+    letter-spacing: 1px; /* Agrega espaciado entre letras */
+    text-transform: uppercase;
+  }
+  
+  .dogCard p {
+    color: #000000;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .dogCard img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  

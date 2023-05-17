@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    text-decoration: none;
   }
   
   .dogCard {
@@ -17,6 +18,7 @@
     cursor: pointer;
     transition: transform 0.3s;
     margin-bottom: 20px;
+    text-decoration: none;
   }
   
   .dogCard:hover {
@@ -26,10 +28,12 @@
   .dogCard h2 {
     font-size: 18px;
     margin-bottom: 5px;
+    text-decoration: none;
   }
   
   .dogCard p {
     margin: 5px 0;
+    text-decoration: none;
   }
   
   .dogCard img {
@@ -38,4 +42,9 @@
     border-radius: 10px;
   }
   
+  .linkNoUnderline {
+    text-decoration: none;
+  }
+
+
   

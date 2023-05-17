@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getDogs } from '../redux/actions/actions';
+import { getDogs, getDogsByBreed } from '../redux/actions/actions';
 
 
 const SearchBar = () => {
@@ -8,19 +8,19 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
+  setSearchTerm(event.target.value)
   };
 
-  const handleSearch = () => {
-    const url = `/dogs${searchTerm ? `?name=${searchTerm}` : ''}`;
-    dispatch(getDogs(url));
+  const handleSearch = (name) => {
+    dispatch(getDogsByBreed(name))
+    
   };
   
 
   return (
     <div>
-      <input type="text" value={searchTerm} onChange={handleInputChange} />
-      <button onClick={handleSearch}>Buscar</button>
+      <input type="text" value={searchTerm}  onChange={handleInputChange} />
+      <button onClick={()=>handleSearch(searchTerm)}>Buscar</button>
     </div>
   );
 };

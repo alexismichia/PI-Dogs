@@ -13,8 +13,9 @@ import Detail from "./Detail";
 const HomePage = () => {
   const temperaments = useSelector((state) => state.temperaments);
   const dogs = useSelector((state) => state.dogs);
+  const filtered = useSelector((state)=>state.filter)
   const dispatch = useDispatch();
-
+const Fileredbreeds= useSelector((state)=>state.DogsByBreed)
   const [showForm, setShowForm] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,8 +25,13 @@ const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
-  const currentDogs = dogs?.slice(indexOfFirstDog, indexOfLastDog);
-
+  
+  let copydog= [...dogs]
+  if(filtered.length) copydog=[...filtered]
+  if(Fileredbreeds) copydog=[...Fileredbreeds]
+  const currentDogs = copydog?.slice(indexOfFirstDog, indexOfLastDog);
+console.log(Fileredbreeds)
+  
   useEffect(() => {
     dispatch(getTemperaments());
     dispatch(getDogs());
@@ -101,20 +107,7 @@ const HomePage = () => {
             />
             ))}
           </div>
-          <div>
-        {currentDogs?.map((dog) => (
-          <Detail 
-            key={dog.id}
-            id={dog.id}
-            name={dog.name}
-            image={dog.image}
-            weight={dog.weight}
-            temperament={dog.temperament}
-            lifeOfYear={dog.lifeOfYear}
-            height={dog.height}
-            />
-            ))}
-          </div>
+         
           <Pagination
             itemsPerPage={dogsPerPage}
             totalItems={dogs?.length}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 const DogList = ({ id, name, weight, height, image, temperament, lifeOfYear }) => {
   return (
     <div className={styles.dogCardContainer}>
-      <Link to={`/detail/${id}`}>
+      <Link to={`/detail/${id}`} className={styles.linkNoUnderline}>
       <div className={styles.dogCard} key={id}>
         <h2>{name}</h2>
         <p>Height: {height} cm</p>

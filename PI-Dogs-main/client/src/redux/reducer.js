@@ -4,7 +4,7 @@ const initialState = {
   dogs: [],
   currentDog: null,
   temperaments: [],
-  id: [],
+  DogById: {},
   filter:[],
   filters: {
     name: '',
@@ -32,7 +32,7 @@ const dogReducer = (state = initialState, action) => {
     case GET_DOG_ID:
             return {
               ...state,
-              id: action.payload
+              DogById: action.payload
             };
     case POST_DOGS:
             return {
@@ -40,14 +40,21 @@ const dogReducer = (state = initialState, action) => {
               createdDog: action.payload
             };
     case FILTER_TEMPERAMENTS: {
-      const dogs= filter;
+      const dogs= state.dogs
       const filterByTemp = action.payload === "All"
-        ? dogs
-        : dogs.filter((dog) => dog.temperaments.find(temperament=> temperament===payload))
+        ? []
+        : dogs.filter((dog) =>{
+          if(dog.temperament){
+            return(dog.temperament.includes(action.payload))
+            
+
+          }
+          else{return false}
+        })
       return {
         ...state,
         
-        dogs: filterByTemp,
+        filter: filterByTemp,
       };
     }                                           
     default:

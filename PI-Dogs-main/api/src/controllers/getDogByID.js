@@ -1,20 +1,18 @@
 const { Dog, Temperament } = require('../db');
 const axios = require('axios');
 const getDogByID = async (id) => {
-  const response = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`);
-  const dogData = response.data; 
+  if (isNaN(+id)) {
+    let filterDb = await Dog.findByPk(id);
+    return filterDb;
+  }
+  
+  let {data} = await axios.get(`https://api.thedogapi.com/v1/breeds`);
+   data=data.find((breed)=> breed.id=== +id);
 
-  const dog = {
-    id: dogData.id,
-    name: dogData.name,
-    life_span: dogData.life_span,
-    temperament: dogData.temperament,
-    height: dogData.height,
-    weight: dogData.weight,
-    image: dogData.image,
-  };
+   if (!data?.name) throw Error("No breeds found");
+   return data;
 
-  return dog;
+  
 };
 
 module.exports = { getDogByID };
