@@ -15,7 +15,7 @@ const HomePage = () => {
   const dogs = useSelector((state) => state.dogs);
   const filtered = useSelector((state)=>state.filter)
   const dispatch = useDispatch();
-const Fileredbreeds= useSelector((state)=>state.DogsByBreed)
+const Filteredbreeds= useSelector((state)=>state.DogsByBreed)
   const [showForm, setShowForm] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,9 +28,9 @@ const Fileredbreeds= useSelector((state)=>state.DogsByBreed)
   
   let copydog= [...dogs]
   if(filtered.length) copydog=[...filtered]
-  if(Fileredbreeds) copydog=[...Fileredbreeds]
+  if(Filteredbreeds.length) copydog=[...Filteredbreeds]
   const currentDogs = copydog?.slice(indexOfFirstDog, indexOfLastDog);
-console.log(Fileredbreeds)
+
   
   useEffect(() => {
     dispatch(getTemperaments());

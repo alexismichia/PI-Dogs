@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getTemperaments } from "../redux/actions/actions";
+import { createNewDog, getTemperaments } from "../redux/actions/actions";
 import styles from  "../Styles/CreateDogForm.module.css"
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const CreateDogForm = () => {
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
-
+  
 
   const handleTemperamentChange = (e) => {
     const selectedOptions = Array.from(e.target.options)
@@ -42,20 +42,13 @@ const CreateDogForm = () => {
       },
       temperaments: selectedTemperaments,
     };
-
+    console.log("Datos del nuevo perro:", newDog);
     try {
-      const response = await fetch("/dogs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newDog),
-      });
-      const data = await response.json();
-      console.log(data); // do something with the response from the server
+      dispatch(createNewDog(newDog));
     } catch (error) {
       console.error(error);
     }
+    
   };
 
   return (

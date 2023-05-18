@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS} from './actions/types';
+import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS, FILTER_BY_BREEDS} from './actions/types';
 
 const initialState = {
   dogs: [],
@@ -6,6 +6,8 @@ const initialState = {
   temperaments: [],
   DogById: {},
   filter:[],
+  createdDog:[],
+  DogsByBreed:[],
   filters: {
     name: '',
     temperament: '',
@@ -39,6 +41,13 @@ const dogReducer = (state = initialState, action) => {
               ...state,
               createdDog: action.payload
             };
+    case FILTER_BY_BREEDS:
+      return{
+        ...state,
+        DogsByBreed: action.payloads
+      }
+
+
     case FILTER_TEMPERAMENTS: {
       const dogs= state.dogs
       const filterByTemp = action.payload === "All"
