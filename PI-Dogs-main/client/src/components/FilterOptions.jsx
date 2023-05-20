@@ -3,8 +3,9 @@ import styles from "../Styles/FilterOptions.module.css"
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getTemperaments } from "../redux/actions/actions";
+import {  getTemperaments, sortedBreeds } from "../redux/actions/actions";
 import { filterByTemp } from "../redux/actions/actions";
+
 const FilterOptions = ({ onFilter, onSort }) => {
   const temperaments = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
@@ -22,7 +23,8 @@ const FilterOptions = ({ onFilter, onSort }) => {
   };
 
   const handleSortChange = (e) => {
-    onSort(e.target.value);
+    dispatch(sortedBreeds(e.target.value))
+    
   };
 
   return (
@@ -50,10 +52,10 @@ const FilterOptions = ({ onFilter, onSort }) => {
         <label htmlFor="sort">Ordenar por:</label>
         <select id="sort" onChange={handleSortChange}>
           <option value="">Sin Orden</option>
-          <option value="name-asc">Nombre (A-Z)</option>
+          <option value="D">Nombre (A-Z)</option>
           <option value="name-desc">Nombre (Z-A)</option>
-          <option value="weight-asc">Peso (Ascendente)</option>
-          <option value="weight-desc">Peso (Descendente)</option>
+          <option value="weightDown">Peso (Descendente)</option>
+          <option value="weightUp">Peso (Ascendente)</option>
         </select>
       </div>
     </div>

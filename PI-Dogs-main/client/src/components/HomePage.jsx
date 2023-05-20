@@ -55,9 +55,7 @@ const Filteredbreeds= useSelector((state)=>state.DogsByBreed)
     setFormSubmitted(true);
   };
 
-  const handleSearch = (searchTerm) => {
-    setSearchTerm(searchTerm);
-  };
+ 
 
   const handleFilter = (filter) => {
     setFilter(filter);
@@ -78,7 +76,7 @@ const Filteredbreeds= useSelector((state)=>state.DogsByBreed)
         <Link to="/form">
           <button className={styles.button}>Agregar nueva raza</button>
         </Link>
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar  />
         <FilterOptions
           
           onFilter={handleFilter}

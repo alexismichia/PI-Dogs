@@ -1,0 +1,6 @@
+function capitalizeWords(str) {
+  return str.toLowerCase().replace(/(^|\s)\S/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+module.exports= capitalizeWords

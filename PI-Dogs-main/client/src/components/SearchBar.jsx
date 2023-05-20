@@ -11,16 +11,18 @@ const SearchBar = () => {
   setSearchTerm(event.target.value)
   };
 
-  const handleSearch = (name) => {
-    dispatch(getDogsByBreed(name))
-    
+  const handleSearch = (event) => {
+    event.preventDefault()
+    dispatch(getDogsByBreed(searchTerm))
+
+    console.log(searchTerm)
   };
   
 
   return (
     <div>
       <input type="text" value={searchTerm}  onChange={handleInputChange} />
-      <button onClick={()=>handleSearch(searchTerm)}>Buscar</button>
+      <button onClick={handleSearch}>Buscar</button>
     </div>
   );
 };

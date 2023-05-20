@@ -1,7 +1,7 @@
 const { Dog, Temperament } = require('../db');
 
 async function createNewDog(req, res, next) {
-  const { name, height, weight, life_span, image, temperament } = req.body;
+  const { name, height, weight, life_span, image, temperaments } = req.body;
   try {
     const newDog = await Dog.create({
       name,
@@ -11,16 +11,19 @@ async function createNewDog(req, res, next) {
       image,
     });
 
-    // Busca el objeto Temperament correspondiente al nombre enviado en el body
-    const existingTemperament = await Temperament.findOne({
-      where: {
-        name: temperament,
-      },
-    });
+    if (temperaments && temperaments.length > 0) {
+      const existingTemperaments = await Temperament.findAll({
+        where: {
+          id: temperaments,
+        },
+      });
 
-    // Si existe el objeto Temperament, lo asocia con el nuevo perro
-    if (existingTemperament) {
-      await newDog.addTemperament(existingTemperament);
+      // Verificar si se encontraron todos los temperamentos solicitados
+      if (existingTemperaments.length !== temperaments.length) {
+        throw new Error('One or more temperaments do not exist');
+      }
+
+      await newDog.setTemperaments(existingTemperaments);
     }
 
     res.status(201).json(newDog);
@@ -29,5 +32,5 @@ async function createNewDog(req, res, next) {
   }
 }
 
-
 module.exports = createNewDog;
+

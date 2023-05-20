@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS, FILTER_BY_BREEDS} from './actions/types';
+import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS, FILTER_BY_BREEDS,SORT_BREEDS} from './actions/types';
 
 const initialState = {
   dogs: [],
@@ -44,7 +44,7 @@ const dogReducer = (state = initialState, action) => {
     case FILTER_BY_BREEDS:
       return{
         ...state,
-        DogsByBreed: action.payloads
+        DogsByBreed: action.payload
       }
 
 
@@ -65,10 +65,57 @@ const dogReducer = (state = initialState, action) => {
         
         filter: filterByTemp,
       };
-    }                                           
+    }
+    case SORT_BREEDS: {
+      
+        
+        
+      if (action.payload === "weightDown") {
+        return {
+          ...state,
+          filter: [...state.filter].sort((a, b) =>
+            b.weight.slice(0, 2) - a.weight.slice(0, 2)
+          )
+        };
+      } else if (action.payload === "weightUp") {
+        return {
+          ...state,
+          filter: [...state.filter].sort((a, b) =>
+            a.weight.slice(5) - b.weight.slice(5)
+          )
+        };
+      } else if (action.payload === "D") {
+        return {
+          ...state,
+          filter: [...state.filter].sort(
+            (a, b) =>
+            a.name.localeCompare(b.name)
+          )
+        };
+      } else {
+        return {
+          ...state,
+          filter: [...state.filter].sort(
+            (a, b) =>
+            -1*a.name.localeCompare(b.name)
+          )
+        };
+      }}
+      
+    
+
+   
+  
+
+ 
+  
+
+    
+
     default:
       return state;
   }
 };
 
 export default dogReducer;
+

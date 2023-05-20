@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createNewDog, getTemperaments } from "../redux/actions/actions";
-import styles from  "../Styles/CreateDogForm.module.css"
+import styles from "../Styles/CreateDogForm.module.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -8,17 +8,16 @@ import { useDispatch } from "react-redux";
 const CreateDogForm = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  const [minHeight, setMinHeight] = useState("");
-  const [maxHeight, setMaxHeight] = useState("");
-  const [minWeight, setMinWeight] = useState("");
-  const [maxWeight, setMaxWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [lifeSpan, setLifeSpan] = useState("");
   const [selectedTemperaments, setSelectedTemperaments] = useState([]);
   const temperaments = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
-  
 
   const handleTemperamentChange = (e) => {
     const selectedOptions = Array.from(e.target.options)
@@ -27,19 +26,15 @@ const CreateDogForm = () => {
 
     setSelectedTemperaments(selectedOptions);
   };
-  const handleSubmit = async (e, temperaments) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newDog = {
       name,
       image,
-      height: {
-        min: minHeight,
-        max: maxHeight,
-      },
-      weight: {
-        min: minWeight,
-        max: maxWeight,
-      },
+      height,
+      weight,
+      life_span: lifeSpan,
       temperaments: selectedTemperaments,
     };
     console.log("Datos del nuevo perro:", newDog);
@@ -48,13 +43,14 @@ const CreateDogForm = () => {
     } catch (error) {
       console.error(error);
     }
-    
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles["input-container"]}>
-        <label className={styles.label} htmlFor="name">Name:</label>
+        <label className={styles.label} htmlFor="name">
+          Name:
+        </label>
         <input
           type="text"
           id="name"
@@ -63,7 +59,9 @@ const CreateDogForm = () => {
         />
       </div>
       <div className={styles["input-container"]}>
-        <label className={styles.label} htmlFor="image">Image URL:</label>
+        <label className={styles.label} htmlFor="image">
+          Image URL:
+        </label>
         <input
           type="text"
           id="image"
@@ -72,49 +70,42 @@ const CreateDogForm = () => {
         />
       </div>
       <div className={styles["input-container"]}>
-        <label className={styles.label} htmlFor="minHeight">Altura:</label>
-        <div className={styles["input-container"]}>
-          <label className={styles.label} htmlFor="minHeight">min:</label>
-          <input
-            type="number"
-            id="minHeight"
-            value={minHeight}
-            onChange={(e) => setMinHeight(e.target.value)}
-          />
-        </div>
-        <div className={styles["input-container"]}>
-          <label className={styles.label} htmlFor="maxHeight">max:</label>
-          <input
-            type="number"
-            id="maxHeight"
-            value={maxHeight}
-            onChange={(e) => setMaxHeight(e.target.value)}
-          />
-        </div>
+        <label className={styles.label} htmlFor="height">
+          Height:
+        </label>
+        <input
+          type="text"
+          id="height"
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
+        />
       </div>
       <div className={styles["input-container"]}>
-        <label className={styles.label} htmlFor="minWeight">Peso:</label>
-        <div className={styles["input-container"]}>
-          <label className={styles.label} htmlFor="minWeight">min:</label>
-          <input
-            type="number"
-            id="minWeight"
-            value={minWeight}
-            onChange={(e) => setMinWeight(e.target.value)}
-          />
-        </div>
-        <div className={styles["input-container"]}>
-          <label className={styles.label} htmlFor="maxWeight">max:</label>
-          <input
-            type="number"
-            id="maxWeight"
-            value={maxWeight}
-            onChange={(e) => setMaxWeight(e.target.value)}
-          />
-        </div>
+        <label className={styles.label} htmlFor="weight">
+          Weight:
+        </label>
+        <input
+          type="text"
+          id="weight"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+        />
       </div>
       <div className={styles["input-container"]}>
-        <label className={styles.label} htmlFor="temperaments">Temperaments:</label>
+        <label className={styles.label} htmlFor="lifeSpan">
+          Life Span:
+        </label>
+        <input
+          type="text"
+          id="lifeSpan"
+          value={lifeSpan}
+          onChange={(e) => setLifeSpan(e.target.value)}
+        />
+      </div>
+      <div className={styles["input-container"]}>
+        <label className={styles.label} htmlFor="temperaments">
+          Temperaments:
+        </label>
         <select
           id="temperament"
           multiple // Permite seleccionar varios temperamentos
@@ -133,8 +124,8 @@ const CreateDogForm = () => {
   );
 };
 
-
 export default CreateDogForm;
+
 
 
 

@@ -6,7 +6,9 @@ import {
   GET_DOG_ID,
   POST_DOGS,
   FILTER_TEMPERAMENTS,
-  FILTER_BY_BREEDS
+  FILTER_BY_BREEDS,
+  SORT_BREEDS
+
 } from "./types";
 
 // Action creator para obtener la lista de perros
@@ -24,7 +26,7 @@ export const getDogs = () => {
 export const getDogsByBreed = (breed) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3001/dogs?q=${breed}`);
+      const response = await axios.get(`http://localhost:3001/dogs?name=${breed}`);
       console.log("Dogs response:", response.data);
       dispatch({ type: FILTER_BY_BREEDS, payload: response.data });
     } catch (error) {
@@ -66,7 +68,7 @@ export const getTemperaments = () => {
 export const createNewDog = (newDog) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3001/dogs/", newDog);
+      const response = await axios.post("http://localhost:3001/dogs", newDog);
       console.log("New dog created:", response.data);
       dispatch({ type: POST_DOGS, payload: response.data });
     } catch (error) {
@@ -78,5 +80,11 @@ export const createNewDog = (newDog) => {
 export const filterByTemp=(temperaments)=>{
 return {type: FILTER_TEMPERAMENTS, payload:temperaments}
 };
-    
+
+export const sortedBreeds=(weight)=>{
+  return {type: SORT_BREEDS, payload:weight}
+}
+
+
+
 

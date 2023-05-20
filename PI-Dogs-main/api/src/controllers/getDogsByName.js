@@ -8,7 +8,7 @@ async function getDogsByName(name) {
     if (!name) return { message: "Missing required data" };
     const { data } = await axios(`https://api.thedogapi.com/v1/breeds/search?q=${name}`);
     console.log(data);
-    const dogsFromApi = data.map(dg => {
+    const dogsFromApi = await Promise.all(data.map(async (dg) => {
       const dog = {
         weight: dg.weight.metric,
         height: dg.height.metric,
@@ -20,8 +20,22 @@ async function getDogsByName(name) {
         temperament: dg.temperament,
         image: dg['reference_image_id']
       };
+      
+      if (dg.id) {
+        try {
+          const breedsData = await axios('https://api.thedogapi.com/v1/breeds/');
+          const breed = breedsData.data.find((breed) => breed.id === dg.id);
+          if (breed && breed.image) {
+            dog.image = breed.image.url; // Set the image property with the URL from the breed object
+          }
+        } catch (error) {
+          console.error(`Failed to fetch image for dog with ID: ${dg.id}`);
+        }
+      }
+      
       return dog;
-    });
+    }));
+     
     const dogsFromDb = await Dog.findAll({
       where: {
         name: {

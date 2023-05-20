@@ -1,1 +1,19 @@
-
+.App {
+    background-color: navy;
+    animation: colorChange 5s infinite;
+    
+  }
+  
+  @keyframes colorChange {
+    0% {
+      background-color: black;
+    }
+    50% {
+      background-color: green;
+    }
+    100% {
+      background-color: navy;
+    }
+  }
+  
+  
