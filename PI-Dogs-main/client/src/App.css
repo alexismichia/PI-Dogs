@@ -1,19 +1,14 @@
 .App {
-    background-color: navy;
-    animation: colorChange 5s infinite;
-    
+    background-image: url('https://cdn.pixabay.com/photo/2012/03/01/00/53/dog-19812_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+  padding: 0;
+  height: 100%;
   }
   
-  @keyframes colorChange {
-    0% {
-      background-color: black;
-    }
-    50% {
-      background-color: green;
-    }
-    100% {
-      background-color: navy;
-    }
-  }
+  
+  
   
   

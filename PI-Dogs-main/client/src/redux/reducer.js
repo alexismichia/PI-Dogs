@@ -75,19 +75,29 @@ const dogReducer = (state = initialState, action) => {
           ...state,
           filter: [...state.filter].sort((a, b) =>
             b.weight.slice(0, 2) - a.weight.slice(0, 2)
+          ),
+          dogs: [...state.dogs].sort((a, b) =>
+            b.weight.slice(0, 2) - a.weight.slice(0, 2)
           )
         };
       } else if (action.payload === "weightUp") {
         return {
           ...state,
           filter: [...state.filter].sort((a, b) =>
-            a.weight.slice(5) - b.weight.slice(5)
-          )
+          parseInt(a.weight.slice(0, 2)) - parseInt(b.weight.slice(0, 2))
+          ),
+          dogs: [...state.dogs].sort((a, b) =>
+          parseInt(a.weight.slice(0, 2)) - parseInt(b.weight.slice(0, 2))
+          ),
         };
       } else if (action.payload === "D") {
         return {
           ...state,
           filter: [...state.filter].sort(
+            (a, b) =>
+            a.name.localeCompare(b.name)
+          ),
+          dogs: [...state.dogs].sort(
             (a, b) =>
             a.name.localeCompare(b.name)
           )
@@ -96,6 +106,10 @@ const dogReducer = (state = initialState, action) => {
         return {
           ...state,
           filter: [...state.filter].sort(
+            (a, b) =>
+            -1*a.name.localeCompare(b.name)
+          ),
+          dogs: [...state.dogs].sort(
             (a, b) =>
             -1*a.name.localeCompare(b.name)
           )

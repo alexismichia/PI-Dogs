@@ -16,7 +16,7 @@ async function getDogsData() {
         name: dg.name,
         bredFor: dg.bred_for,
         breedGroup: dg.breed_group,
-        lifeOfYear: dg.life_span,
+        life_span: dg.life_span,
         temperament: dg.temperament,
         origin: dg.origin,
         image: dg.image.url

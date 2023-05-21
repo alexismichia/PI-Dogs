@@ -4,6 +4,7 @@ import styles from "../Styles/CreateDogForm.module.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const CreateDogForm = () => {
   const [name, setName] = useState("");
@@ -111,16 +112,22 @@ const CreateDogForm = () => {
           multiple // Permite seleccionar varios temperamentos
           value={selectedTemperaments}
           onChange={handleTemperamentChange}
+          className={styles.select} 
         >
           {temperaments.map((temperament) => (
-            <option key={temperament.id} value={temperament.name}>
+            <option className={styles.temperamenbarra} key={temperament.id} value={temperament.name}>
               {temperament.name}
             </option>
           ))}
         </select>
+        <Link to="/home" className={styles.backButton}>
+        Back to Home
+      </Link>
       </div>
-      <button type="submit">Create Dog</button>
+      <button type="submit" className={styles.Createbutton}>Create Dog</button>
+      
     </form>
+    
   );
 };
 

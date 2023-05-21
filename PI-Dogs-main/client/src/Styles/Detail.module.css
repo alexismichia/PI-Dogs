@@ -1,40 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@1,500&display=swap');
+
+/* Resto de tus estilos */
+
+
+
 .detailContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 97vh; /* Ocupa la altura completa de la ventana */
 }
+
+.dogCard {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  border-radius: 20px;
+  box-shadow: 0 5px 4px rgba(161, 0, 0, 0.1);
+  border: 2px solid #2196F3;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 500px; /* Altura fija para todas las cards */
+  font-family: 'Prompt', sans-serif;
+}
+
+.dogCard img {
   
+  height: 250px; /* Altura fija para las imágenes */
+  border-radius: 20px;
+  border: 2px solid #2196F3;
+  object-fit: cover; /* Ajusta la imagen para cubrir el espacio disponible */
+  margin-bottom: 20px;
+  width: 100%; /* Ajusta el ancho de la imagen al ancho del contenedor */
+   /* Mantiene la proporción de aspecto de la imagen */
+  max-width: 100%; /* Asegura que la imagen no se desborde del contenedor */
+  max-height: 100%; /* Asegura que la imagen no se desborde del contenedor */
+  object-fit: contain;
+}
+
+.dogCard h2 {
+  font-size: 24px;
+  margin-bottom: 0px;
+  color: white;
+  border: 2px solid #2196F3;
+  border-radius: 20px;
+  padding: 0px;
+}
+
+.dogCard p {
+  font-size: 16px;
+  margin-bottom: 0px;
+  color: white;
+  border: 2px solid #2196F3;
+  border-radius: 20px;
+  padding: 2px;
+}
+
+@media (max-width: 768px) {
   .dogCard {
-    background-color: #2196;
-    border-radius: 50px;
-    box-shadow: 0 5px 4px rgba(161, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Altura automática en dispositivos móviles */
   }
-  
-  .dogCard h2 {
-    color: #000000;
-    font-size: 24px;
-    margin-bottom: 10px;
-    letter-spacing: 1px; /* Agrega espaciado entre letras */
-    text-transform: uppercase;
-  }
-  
-  .dogCard p {
-    color: #000000;
-    font-size: 16px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  
+
   .dogCard img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-top: 20px;
+    height: 150px; /* Altura más pequeña en dispositivos móviles */
   }
+}
+
+.backButton {
+  margin: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: 1px solid #2196F3;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.backButton:hover {
+  background-color: #2196F3;
+  color: white;
+}
+
+
+  
   
   

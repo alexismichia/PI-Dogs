@@ -100,7 +100,7 @@ const Filteredbreeds= useSelector((state)=>state.DogsByBreed)
             image={dog.image}
             weight={dog.weight}
             temperament={dog.temperament}
-            lifeOfYear={dog.lifeOfYear}
+            life_span={dog.life_span}
             height={dog.height}
             />
             ))}
