@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS, FILTER_BY_BREEDS,SORT_BREEDS} from './actions/types';
+import { GET_DOGS, GET_TEMPERAMENTS, GET_DOG_ID,POST_DOGS, FILTER_TEMPERAMENTS, FILTER_BY_BREEDS,SORT_BREEDS, FILTER_BY_ORIGIN} from './actions/types';
 
 const initialState = {
   dogs: [],
@@ -116,6 +116,30 @@ const dogReducer = (state = initialState, action) => {
         };
       }}
       
+
+      case FILTER_BY_ORIGIN: {
+        const { api, db } = action.payload;
+  
+        // Filtrar los perros según el origen
+        const filteredDogs = state.dogs.filter(dog => {
+          return (
+            (api && dog.origin === 'API') ||
+            (db && dog.origin === 'DB')
+          );
+        });
+  
+        // Actualizar el estado de los perros filtrados
+        const updatedFilter = {
+          ...state.filter,
+          api,
+          db,
+        };
+  
+        return {
+          ...state,
+          filter: updatedFilter,
+          filteredDogs,
+      }};
     
 
    

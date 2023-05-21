@@ -35,4 +35,3 @@ const createNewDog = async ({
   } 
 
 module.exports = createNewDog;
-

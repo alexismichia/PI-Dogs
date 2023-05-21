@@ -24,8 +24,8 @@ const { getDogByID } = require('../controllers/getDogByID');
 const { allTemperaments } = require('../handlers/allTemperaments');
 const getDogsByName = require('../handlers/dogsByName');
 
-router.get('/dogs/:id', dogByID(getDogByID));
 router.get('/dogs/name',getDogsByName)
+router.get('/dogs/:id', dogByID(getDogByID));
 router.post('/dogs',newDog)
   
 router.get('/temperaments', allTemperaments);

@@ -19,11 +19,11 @@ const Detail = (props) => {
       <div className={styles.dogCard} key={DogById.id}>
         <h2>{DogById.name}</h2>
         <p>ID: {DogById.id}</p>
-       <p>Height: {DogById.height?.metric} cm</p>
-        <p>Weight: {DogById.weight?.metric} kg</p>
+       <p>Height: {DogById.height} cm</p>
+        <p>Weight: {DogById.weight} kg</p>
         <p>Life Span: {DogById.life_span}</p>
         <p>Temperament: {DogById.temperament}</p>
-        <img src={DogById.image?.url} alt={DogById.name} />
+        <img src={DogById.image} alt={DogById.name} />
       </div>
       <Link to="/home" className={styles.backButton}>
         Back to Home

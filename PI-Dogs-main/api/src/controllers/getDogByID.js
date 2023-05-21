@@ -10,9 +10,17 @@ const getDogByID = async (id) => {
    data=data.find((breed)=> breed.id=== +id);
 
    if (!data?.name) throw Error("No breeds found");
-   return data;
 
-  
-};
+   const { height, weight,image, ...rest } = data;
+   const modifiedData = {
+     ...rest,
+     height: height.metric,
+     weight: weight.metric,
+     image: image.url
+    
+   };
+ 
+   return modifiedData;
+ };
 
 module.exports = { getDogByID };
