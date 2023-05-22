@@ -10,7 +10,7 @@ const Detail = (props) => {
   const DogById = useSelector((state) => state.DogById);
  
   useEffect(() => {
-    console.log("ID:", id); 
+    console.log("PERRO:", DogById); 
     dispatch(getDogId(id));
   }, [dispatch, id]);
 

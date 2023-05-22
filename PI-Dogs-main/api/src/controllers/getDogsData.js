@@ -1,9 +1,32 @@
-const { Dog } = require('../db');
+const { Dog, Temperament } = require('../db');
+const { Op } = require('sequelize');
+const { Sequelize } = require('sequelize');
+
 const axios= require('axios')
 async function getDogsData() {
   try {
     // Primero buscamos los perros en la base de datos
-    const dbDogs = await Dog.findAll({ raw: true });
+    let dbDogs = await Dog.findAll({
+      
+      include: {
+        model: Temperament,
+        
+        through: { attributes: [] },
+      },
+      
+    });
+    dbDogs= dbDogs.map(dg => {
+      return {
+        weight: dg.weight,
+        height: dg.height,
+        id: dg.id,
+        name: dg.name,
+        life_span: dg.life_span,
+        temperament: dg.temperaments.map(temp=>temp.name).join(", "),
+        image: dg.image
+      };
+      
+  })
 
     // Luego obtenemos los perros de la API
     const { data } = await axios(`https://api.thedogapi.com/v1/breeds`);

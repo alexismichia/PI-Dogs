@@ -8,9 +8,8 @@ const createNewDog = async ({
   life_span,
   temperament,
 }) => {
-  //temp sea un array
-  const perro=temperament
-  console.log(perro)
+  
+  
   const newDog = await Dog.create({
     image,
     name,
@@ -18,20 +17,22 @@ const createNewDog = async ({
     height,
     life_span,
   });
- 
 
-  const newTemperament = [...new Set(temperament)];
+  console.log('New Dog:', newDog.toJSON());
+ newDog.addTemperaments(temperament)
+ return(newDog)
 
-  newTemperament.forEach(async (temper) => {
-    const findTemper = await Temperament.findOne({
-      where: { name: temper },
-    });
 
-    newDog.addTemperament(findTemper);
-    
-  });
 
-    
-  } 
+  
+
+   
+
+
+  console.log('Temperaments added to Dog:', temperaments.map(t => t.toJSON()));
+};
 
 module.exports = createNewDog;
+
+
+

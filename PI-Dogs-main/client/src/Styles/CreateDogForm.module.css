@@ -26,7 +26,7 @@
   background-color: black;
   border-radius: 20px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
-  border: 2px solid #2196F3;
+  border: 2px solid blue;
   color: white;
   margin-top: 20px;
   height: 88vh;
@@ -50,7 +50,7 @@
   border-radius: 3px;
   background-color: #000000;
   color: white;
-  border: 1px solid #2196F3;
+  border: 1px solid blue;
   font-family: 'Prompt', sans-serif;
 }
 
@@ -87,14 +87,14 @@
   font-weight: bold;
   background-color: black;
   color: white;
-  border: 2px solid #2196F3;
+  border: 2px solid blue;
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;
 }
 
 .backButton:hover {
-  background-color: #2196F3;
+  background-color: blue;
   color: white;
 }
 .Createbutton {
@@ -102,19 +102,19 @@
   font-weight: bold;
   background-color: black;
   color: white;
-  border: 2px solid #2196F3;
+  border: 2px solid blue;
   padding: 10px;
   border-radius: 5px;
   text-decoration: none;
 }
 
 .Createbutton:hover {
-  background-color: #2196F3;
+  background-color: blue;
   color: white;
 }
 .temperamenbarra {
   background-color: black;
-  border: 2px solid #2196F3;
+  border: 2px solid rgb(0, 0, 255);
   color: white;
   font-family: 'Roboto', sans-serif;
   padding: 10px;
@@ -132,18 +132,18 @@
 }
 
 .temperamenbarra::-webkit-scrollbar-thumb {
-  background-color: rgba(33, 150, 243, 0.5);
+  background-color: rgb(0, 0, 255);
   border-radius: 4px;
 }
 
 .temperamenbarra::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(33, 150, 243, 0.8);
+  background-color: rgb(0, 0, 255);
 }
 .select {
   background-color: transparent;
   color: white;
   font-family: 'Roboto', sans-serif;
-  border: 2px solid #2196F3;
+  border: 2px solid rgb(0, 0, 255);
   padding: 5px;
 
   height: 80px; /* Ajusta la altura de las opciones */
@@ -155,12 +155,12 @@
 }
 
 .select::-webkit-scrollbar-thumb {
-  background-color: #2196F3; /* Color del pulgar de la barra de desplazamiento */
+  background-color: rgb(0, 0, 255); /* Color del pulgar de la barra de desplazamiento */
   border-radius: 4px; /* Ajusta la forma del pulgar */
 }
 
 .select::-webkit-scrollbar-thumb:hover {
-  background-color: #1565C0; /* Color del pulgar al pasar el cursor por encima */
+  background-color: rgb(0, 0, 255); /* Color del pulgar al pasar el cursor por encima */
 }
 
 

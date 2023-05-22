@@ -3,7 +3,7 @@ import styles from "../Styles/FilterOptions.module.css"
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {  getTemperaments, sortedBreeds } from "../redux/actions/actions";
+import {  filterorigin, getTemperaments, sortedBreeds } from "../redux/actions/actions";
 import { filterByTemp } from "../redux/actions/actions";
 
 const FilterOptions = ({ onFilter, onSort }) => {
@@ -19,7 +19,7 @@ const FilterOptions = ({ onFilter, onSort }) => {
   };
 
   const handleOriginChange = (e) => {
-    onFilter(e.target.value);
+    dispatch(filterorigin(e.target.value))
   };
 
   const handleSortChange = (e) => {
@@ -43,8 +43,8 @@ const FilterOptions = ({ onFilter, onSort }) => {
       <div className={styles.filter}>
         <label htmlFor="origin">Filtrar por Origen:</label>
         <select id="origin" onChange={handleOriginChange}>
-          <option value="">Todos los Orígenes</option>
-          <option value="API">API</option>
+          <option value="all">Todos los Orígenes</option>
+          <option value="api">API</option>
           <option value="BD">Base de Datos</option>
         </select>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getDogs, getDogsByBreed } from '../redux/actions/actions';
-
+import Styles from "../Styles/SearchBar.module.css"
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,9 +20,9 @@ const SearchBar = () => {
   
 
   return (
-    <div>
-      <input type="text" value={searchTerm}  onChange={handleInputChange} />
-      <button onClick={handleSearch}>Buscar</button>
+    <div className='search-bar'>
+      <input className='input' type="text" value={searchTerm}  onChange={handleInputChange} />
+      <button  className='button' onClick={handleSearch}>Buscar</button>
     </div>
   );
 };

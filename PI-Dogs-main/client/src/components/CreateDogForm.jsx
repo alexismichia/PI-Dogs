@@ -36,7 +36,7 @@ const CreateDogForm = () => {
       height,
       weight,
       life_span: lifeSpan,
-      temperaments: selectedTemperaments,
+      temperament: selectedTemperaments,
     };
     console.log("Datos del nuevo perro:", newDog);
     try {
@@ -45,6 +45,7 @@ const CreateDogForm = () => {
       console.error(error);
     }
   };
+  console.log(selectedTemperaments)
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -115,7 +116,7 @@ const CreateDogForm = () => {
           className={styles.select} 
         >
           {temperaments.map((temperament) => (
-            <option className={styles.temperamenbarra} key={temperament.id} value={temperament.name}>
+            <option className={styles.temperamenbarra} key={temperament.id} value={temperament.id}>
               {temperament.name}
             </option>
           ))}

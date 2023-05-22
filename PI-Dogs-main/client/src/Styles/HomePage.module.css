@@ -1,10 +1,16 @@
 .title {
-  color: white;  
+  color: white;
   font-size: 3rem;
-    font-weight: bold;
-    margin:  0;
-  
-  }
+  font-weight: bold;
+  margin: 0;
+  text-align: center; /* Añade esta propiedad para centrar el texto */
+  background-color: black; /* Agrega un fondo negro */
+  border: 2px solid blue; /* Aplica un borde azul */
+  border-radius: 5px; /* Opcional: agrega esquinas redondeadas al borde */
+  padding: 10px; /* Opcional: agrega un espacio interno alrededor del texto */
+  font-family: "Arial", sans-serif; /* Aplica un tipo de letra acorde (puedes cambiar "Arial" por cualquier otra fuente que desees) */
+}
+
   
   .buttonContainer {
     display: flex;
@@ -20,7 +26,7 @@
     padding: 0.5rem 1rem;
     cursor: pointer;
     margin-right: 1rem;
-    border: 1px solid #2196F3;
+    border: 1px solid blue;
   border-radius: 10px;
   }
   

@@ -18,8 +18,8 @@
   
   .pagination a {
     color: #fff;
-    background-color: #0074d9;
-    border: 1px solid #0074d9;
+    background-color: #000000;
+    border: 1px solid rgb(0, 0, 255);
     padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
@@ -27,12 +27,13 @@
   }
   
   .pagination a:hover {
-    background-color: #005f9e;
-    border-color: #005f9e;
+    background-color: rgb(0, 0, 255);
+    border-color: rgb(0, 0, 255);
   }
   
   .pagination .active {
-    background-color: #fff;
-    color: #0074d9;
+    background-color: #faf9f9;
+    color: #000000;
+    border-color: rgb(0, 0, 255);
   }
   

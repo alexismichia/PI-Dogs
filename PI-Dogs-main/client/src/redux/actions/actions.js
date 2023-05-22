@@ -7,8 +7,8 @@ import {
   POST_DOGS,
   FILTER_TEMPERAMENTS,
   FILTER_BY_BREEDS,
-  SORT_BREEDS
-
+  SORT_BREEDS,
+FILTER_BY_ORIGIN
 } from "./types";
 
 // Action creator para obtener la lista de perros
@@ -84,6 +84,11 @@ return {type: FILTER_TEMPERAMENTS, payload:temperaments}
 export const sortedBreeds=(weight)=>{
   return {type: SORT_BREEDS, payload:weight}
 }
+
+export const filterorigin=(origin)=>{
+  return {type: FILTER_BY_ORIGIN, payload:origin}
+}
+
 
 
 

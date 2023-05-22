@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .overlay {
+    background-color: black;
+    padding: 20px;
+    border: 2px solid green;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid green;
+  }
+  
+  .button:hover {
+    background-color: darkgreen;
+  }
+  
+  
+
+
+
+
+  
+  

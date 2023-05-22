@@ -1,0 +1,29 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  input {
+    padding: 5px;
+    background-color: #000000;
+    color: white;
+    border: 1px solid #0000ff;
+  }
+  
+  button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #000000;
+    color: white;
+    border: 1px solid #0000ff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0000ff;
+    color: white;
+  }
+  
+  
+ 
+  
