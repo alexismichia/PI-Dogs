@@ -29,7 +29,7 @@ const createNewDog = async ({
    
 
 
-  console.log('Temperaments added to Dog:', temperaments.map(t => t.toJSON()));
+  
 };
 
 module.exports = createNewDog;

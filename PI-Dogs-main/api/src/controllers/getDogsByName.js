@@ -51,7 +51,11 @@ async function getDogsByName(name) {
     });
     
     
-    if (dogs.length == 0) return { message: "Dog not found" };
+    if (dogs.length == 0) {
+      const error = new Error('Dog not found');
+      error.status = 404;
+      throw error;
+    }
     return dogs.slice(0, 50); // limit the number of results to 50
   } catch (error) {
     return { message: error.message };
